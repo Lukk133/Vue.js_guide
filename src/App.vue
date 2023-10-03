@@ -3,26 +3,31 @@
         :pages="pages"
         active-page="activePage"
         :nav-link-click="(index) => activePage = index"
-                ></navbar>
-
+    ></navbar>
         <div v-show="false">hide this content</div>
         
 
-        <page-viewer
+      <!-- <page-viewer
         v-if="pages.length > 0"
         :page="pages[activePage]">
-    </page-viewer>
+    </page-viewer> -->  
+   
+        <create-page  :page-created="pageCreated"/>
+        
 </template>
 
 <script>
-import Navbar from './Navbar.vue';
+import Navbar from './components/Navbar.vue';
 
-import PageViewer from './PageViewer.vue';
+import PageViewer from './components//PageViewer.vue';
+import CreatePage from './components/CreatePage.vue';
+
 
 export default{
     components:{
         Navbar,
-        PageViewer
+        PageViewer,
+        CreatePage
     },
     created(){
         this.getPages()
@@ -42,6 +47,9 @@ export default{
 
             this.pages = data;
             
+        },
+        pageCreated(pageObj){
+            console.log(pageObj);
         }
     }
     
