@@ -49,7 +49,7 @@ export default{
             
         },
         pageCreated(pageObj){
-            console.log(pageObj);
+            this.pages.push(pageObj);
         }
     }
     
