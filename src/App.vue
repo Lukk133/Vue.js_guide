@@ -1,10 +1,11 @@
 <template>
   <navbar
         :pages="pages"
-        active-page="activePage"
-        
+        :active-page="activePage"
     ></navbar>
-        <div v-show="false">hide this content</div>
+
+    <router-view> </router-view>
+       <!---- <div v-show="false">hide this content</div>
         
 
        <page-viewer
@@ -12,14 +13,14 @@
         :page="pages[activePage]">
     </page-viewer>  
    
-        <create-page  @page-created="pageCreated"/>
+        <create-page  @page-created="pageCreated"/> --->
         
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
 
-import PageViewer from './components//PageViewer.vue';
+import PageViewer from './components/PageViewer.vue';
 import CreatePage from './components/CreatePage.vue';
 
 
