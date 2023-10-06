@@ -71,7 +71,21 @@ v-model="linkText"/>
 
   <script>
 export default{
-  props: ['pageCreated'],
+  emits: {
+    'pageCreated'({pageTitle, content, link, published}){
+      if (!pageTitle){
+        return false
+      }
+      if (!content){
+        return false
+      }
+      if (!link || !link.text || !links.url){
+        return false;
+      }
+
+      return true;  
+    }
+  },
   computed:{
     isFormInvalid(){
       return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl
@@ -91,15 +105,17 @@ export default{
         alert('Please fill the form.')
         return;
       }
-      this.pageCreated({
+
+      /**/
+      this.$emit('pageCreated', {
         pageTitle: this.pageTitle,
         content: this.content,
         link: { 
          text:this.linkText,
         url: this.linkUrl},
         published: this.published
-      }
-      );
+      });
+      
       this.pageTitle= '',
       this.content= '',
       this.linkText= '',
